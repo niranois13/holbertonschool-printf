@@ -1,0 +1,22 @@
+#ifndef MAIN_H
+#define MAIN_H
+#include <stdlib.h>
+#include <stdio.h>
+#include <stdarg.h>
+
+/**
+* print - defines a structure of symbols and functions
+* @sym: symbol of the operator
+* @func: functions to choose from based on the operator
+*/
+typedef struct print
+{
+	char *sym;
+	int (*func)(va_list);
+} print;
+
+/* Functions prototypes */
+int _printf(const char *format, ...);
+
+
+#endif /* MAIN_H */
