@@ -14,9 +14,9 @@ int _printf(const char *format, ...)
 	print ops[] = {
 		{"c", print_char},
 		{"s", print_str},
-		/*{"d", print_int},
+		{"d", print_int},
 		{"i", print_int},
-		{"%", print_percent},*/
+		/*{"%", print_percent},*/
 		{NULL, NULL},
 	};
 
@@ -32,7 +32,6 @@ int _printf(const char *format, ...)
 			{
 				if (ops[i].sym[0] == *format)
 				{
-					ops[i].func(ap);
 					count = count + ops[i].func(ap);
 					break;
 				}
