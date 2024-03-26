@@ -4,24 +4,47 @@
 * _printf - function that determines the type of arguments passed through
 * @format: number of arguments passed through
 *
-* Return: 0 if success
+* Return: count
 */
 int _printf(const char *format, ...)
 {
-	int i = 0;
-	int j = 0;
-	va_list ap;
+	int i;
+	int count = 0;
 
-	print arr[] = {
-		{"c", print_c},
-		{"s", print_s},
-		{"d", print_int},
+	print ops[] = {
+		{"c", print_char},
+		{"s", print_str},
+		/*{"d", print_int},
 		{"i", print_int},
-		{"%", print_percent},
+		{"%", print_percent},*/
 		{NULL, NULL},
 	};
 
+	va_list (ap);
 	va_start (ap, format);
 
-	while
+	while (*format != '\0')
+	{
+		if (*format == '%')
+		{
+			format++;
+			for (i = 0; ops[i].sym != NULL; i++)
+			{
+				if (ops[i].sym[0] == *format)
+				{
+					ops[i].func(ap);
+					count = count + ops[i].func(ap);
+					break;
+				}
+			}
+		}
+		else
+		{
+			_putchar(*format);
+			count++;
+		}
+		format++;
+	}
+	va_end(ap);
+	return (count);
 }

@@ -41,4 +41,10 @@ int main(void)
 	_printf("Unknown:[%r]\n");
 	printf("Unknown:[%r]\n");
 	return (0);
+
+	_printf("Testing _printf function:\n");
+    _printf("Character: %c\n", 'A');
+    _printf("String: %s\n", "Hello, world!");
+    _printf("Null String: %s\n", NULL);
+    return 0;
 }
