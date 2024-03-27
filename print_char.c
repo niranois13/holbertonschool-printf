@@ -1,8 +1,8 @@
 #include "main.h"
 
 /**
-* print_char - function that prints a character
-* @ap: pointer to an argument of type va_list
+* print_char - function that prints a single character.
+* @ap: pointer to an argument of type va_list.
 *
 * Return: number of character printed
 */

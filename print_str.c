@@ -17,10 +17,12 @@ int print_str(va_list ap)
 	{
 		str = "(NULL)";
 	}
+
 	while (str[len] != '\0')
 	{
 		_putchar(str[len]);
 		len++;
 	}
+
 	return (len);
 }

@@ -1,11 +1,14 @@
 #include "main.h"
 
 /**
-* _printf - function that determines the type of arguments passed through
-* @format: number of arguments passed through
+* _printf - Custom implementation of the C printf() function.
+*			It formats and prints data to the standard output.
 *
-* Return: count
+* @format: A pointer to a string containing the format control string.
+*
+* Return:  The number of characters printed on success. -1 otherwise.
 */
+
 int _printf(const char *format, ...)
 {
 	int i;
@@ -14,14 +17,14 @@ int _printf(const char *format, ...)
 	print ops[] = {
 		{"c", print_char},
 		{"s", print_str},
-		/*{"d", print_int},
+		{"d", print_int},
 		{"i", print_int},
-		{"%", print_percent},*/
+		{"%", print_percent},
 		{NULL, NULL},
 	};
 
-	va_list (ap);
-	va_start (ap, format);
+	va_list(ap);
+	va_start(ap, format);
 
 	while (*format != '\0')
 	{
@@ -32,7 +35,6 @@ int _printf(const char *format, ...)
 			{
 				if (ops[i].sym[0] == *format)
 				{
-					ops[i].func(ap);
 					count = count + ops[i].func(ap);
 					break;
 				}
