@@ -20,8 +20,8 @@ int _printf(const char *format, ...)
 		{NULL, NULL},
 	};
 
-	va_list (ap);
-	va_start (ap, format);
+	va_list(ap);
+	va_start(ap, format);
 
 	while (*format != '\0')
 	{

@@ -6,7 +6,7 @@
 #include <stdarg.h>
 
 /**
-* print - defines a structure of symbols and functions
+* struct print - defines a structure of symbols and functions
 * @sym: symbol of the operator
 * @func: functions to choose from based on the operator
 */
@@ -22,5 +22,7 @@ int _printf(const char *format, ...);
 int print_char(va_list ap);
 int print_str(va_list ap);
 int print_int(va_list ap);
+int print_int_recursive(int num);
+
 
 #endif /* MAIN_H */
