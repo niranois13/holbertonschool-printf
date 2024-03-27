@@ -46,5 +46,7 @@ int main(void)
     _printf("Character: %c\n", 'A');
     _printf("String: %s\n", "Hello, world!");
     _printf("Null String: %s\n", NULL);
+
+	_printf("%s is %d%% a great human being.\n", Zakaria, 100);
     return 0;
 }
