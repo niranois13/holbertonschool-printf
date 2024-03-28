@@ -15,12 +15,14 @@ int print_str(va_list ap)
 
 	if (str == NULL)
 	{
-		str = "(NULL)";
+		str = "(null)";
 	}
+
 	while (str[len] != '\0')
 	{
 		_putchar(str[len]);
 		len++;
 	}
+
 	return (len);
 }
