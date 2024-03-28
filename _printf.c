@@ -36,6 +36,14 @@ int _printf(const char *format, ...)
 		if (*format == '%')
 		{
 			format++;
+			if (*format == '\0')
+			{
+				break;
+			}
+			if (*format == '%')
+			{
+				break;
+			}
 			for (i = 0; ops[i].sym != NULL; i++)
 			{
 				if (ops[i].sym[0] == *format)
@@ -43,6 +51,12 @@ int _printf(const char *format, ...)
 					count = count + ops[i].func(ap);
 					break;
 				}
+			}
+			if (ops[i].sym == NULL)
+			{
+				_putchar('%');
+				_putchar(*format);
+				count = count +2;
 			}
 		}
 		else

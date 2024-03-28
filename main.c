@@ -16,6 +16,5 @@ int main(void)
     printf("%!\n");
     _printf("%k\n");
     printf("%k\n");
-	_printf("%s is %d%% a great human being.\n", Z, 100);
     return (0);
 }
