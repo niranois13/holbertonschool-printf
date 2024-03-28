@@ -5,6 +5,10 @@
 *			It formats and prints data to the standard output.
 *
 * @format: A pointer to a string containing the format control string.
+* _printf - Custom implementation of the C printf() function.
+*			It formats and prints data to the standard output.
+*
+* @format: A pointer to a string containing the format control string.
 *
 * Return:  The number of characters printed on success. -1 if it fails.
 */
