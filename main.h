@@ -6,7 +6,7 @@
 #include <stdarg.h>
 
 /**
-* print - defines a structure of symbols and functions to handle those.
+* struct print - defines a structure of symbols and functions to handle those.
 * @sym: symbol representing the format specifier.
 * @func: function pointer to the handler functions.
 */
@@ -23,5 +23,8 @@ int print_char(va_list ap);
 int print_str(va_list ap);
 int print_percent(va_list ap);
 int print_int(va_list ap);
+int print_number(int num);
+
+
 
 #endif /* MAIN_H */
