@@ -25,5 +25,4 @@ int print_percent(va_list ap);
 int print_int(va_list ap);
 int print_number(int num);
 
-
 #endif /* MAIN_H */
