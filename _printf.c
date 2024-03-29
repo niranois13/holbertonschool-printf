@@ -1,71 +1,80 @@
 #include "main.h"
-
 /**
-* _printf - Custom implementation of the C printf() function.
-*			It formats and prints data to the standard output.
-*
-* @format: A pointer to a string containing the format control string.
-* _printf - Custom implementation of the C printf() function.
-*			It formats and prints data to the standard output.
-*
-* @format: A pointer to a string containing the format control string.
-*
-* Return:  The number of characters printed on success. -1 if it fails.
+ * parse_format - This function parses the format string, identifies format
+ *                specifiers, and calls the corresponding printing functions
+ *                to print the formatted output
+ * @format: Pointer to the format string.
+ * @ptr: Pointer to the list of arguments.
+ * @opt: Pointer to an array of structures containing
+ *       format specifiers and corresponding functions.
+ * Return: the total count of characters printed.
 */
-
-int _printf(const char *format, ...)
+int parse_format(const char *format, va_list *ptr, print_f *opt)
 {
-	int i;
-	int count = 0;
+	int i_f, i_opt, count = 0, found = 0;
 
-	print ops[] = {
-		{"c", print_char},
-		{"s", print_str},
-		{"d", print_int},
-		{"i", print_int},
-		{"%", print_percent},
-		{NULL, NULL},
-	};
-
-	va_list(ap);
-	va_start(ap, format);
-
-	if (format == NULL)
-	{
+	if (format == NULL || (format[0] == '%' && format[1] == '\0'))
 		return (-1);
-	}
-
-	while (*format != '\0')
+	for (i_f = 0; format[i_f] != '\0'; i_f++)
 	{
-		if (*format == '%')
+		if (format[i_f] == '%' && format[i_f + 1] == '%')
 		{
-			format++;
-			if (*format == '\0')
+			_putchar('%');
+			count++;
+			i_f++;
+		}
+		else if (format[i_f] == '%')
+		{
+			for (i_opt = 0; opt[i_opt].symbol != '\0'; i_opt++)
 			{
-				break;
-			}
-			for (i = 0; ops[i].sym != NULL; i++)
-			{
-				if (ops[i].sym[0] == *format)
+				if (format[i_f + 1] == opt[i_opt].symbol)
 				{
-					count = count + ops[i].func(ap);
-					break;
+					count += opt[i_opt].f(ptr);
+					found = 1;
 				}
 			}
-			if (ops[i].sym == NULL)
+			if (found == 0)
 			{
 				_putchar('%');
-				_putchar(*format);
-				count = count + 2;
+				_putchar(format[i_f + 1]);
+				count += 2;
 			}
+			i_f++;
 		}
 		else
 		{
-			_putchar(*format);
+			_putchar(format[i_f]);
 			count++;
 		}
-		format++;
 	}
-	va_end(ap);
 	return (count);
+}
+/**
+ * _printf - This function prints formatted output according to the provided
+ *           format string and optional arguments. It uses the parse_format
+ *          function to parse the format string and print the formatted output.
+ * @format: Pointer to the format string.
+ * @...: Optional list of arguments.
+ * Return: the total count of characters printed
+*/
+int _printf(const char *format, ...)
+{
+	va_list ptr;
+
+	print_f opt[] = {
+		{'c', print_c},
+		{'s', print_s},
+		{'d', print_i},
+		{'i', print_i},
+		{'u', print_ui},
+		{'o', print_o},
+		{'x', print_x},
+		{'X', print_X},
+		{'b', print_b},
+		{'r', print_rev},
+		{'\0', NULL}
+	};
+	va_start(ptr, format);
+	va_end(ptr);
+	return (parse_format(format, &ptr, opt));
 }
