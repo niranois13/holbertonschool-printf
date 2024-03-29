@@ -6,9 +6,9 @@
 #include <stdarg.h>
 
 /**
-* struct print - defines a structure of symbols and functions
-* @sym: symbol of the operator
-* @func: functions to choose from based on the operator
+* struct print - defines a structure of symbols and functions to handle those.
+* @sym: symbol representing the format specifier.
+* @func: function pointer to the handler functions.
 */
 typedef struct print
 {
@@ -21,8 +21,8 @@ int _putchar(char c);
 int _printf(const char *format, ...);
 int print_char(va_list ap);
 int print_str(va_list ap);
+int print_percent(va_list ap);
 int print_int(va_list ap);
-int print_int_recursive(int num);
-
+int print_number(int num);
 
 #endif /* MAIN_H */

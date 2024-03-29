@@ -9,29 +9,39 @@
 int print_int(va_list ap)
 {
 	int num = va_arg(ap, int);
-	int number_total_characters = 0;
-	int chiffre_total_in_number = 1;
-	unsigned int num_positif;
+	int count = 0;
 
 	if (num < 0)
 	{
-		number_total_characters += _putchar('-');
+		_putchar('-');
 		num = -num;
+		count++;
 	}
 
-	num_positif = num;
-
-	while ((num_positif / chiffre_total_in_number) > 9)
+	if (num == 0)
 	{
-		chiffre_total_in_number *= 10;
+		_putchar('0');
+		return (1);
 	}
 
-	while (chiffre_total_in_number >= 1)
-	{
-		_putchar((num_positif / chiffre_total_in_number) + '0');
-		num_positif %= chiffre_total_in_number;
-		chiffre_total_in_number /= 10;
-		number_total_characters++;
-	}
-	return (number_total_characters);
+	count += print_number(num);
+
+	return (count);
+}
+
+
+/**
+ * print_number - Recursively print each digit of a number
+ * @num: Number to print
+ * Return: Number of characters printed
+ */
+int print_number(int num)
+{
+	int count = 0;
+
+	if (num / 10 != 0)
+		count += print_number(num / 10);
+
+	_putchar(num % 10 + '0');
+	return (count);
 }
