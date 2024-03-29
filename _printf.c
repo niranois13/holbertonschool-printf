@@ -56,7 +56,7 @@ int _printf(const char *format, ...)
 			{
 				_putchar('%');
 				_putchar(*format);
-				count = count +2;
+				count = count + 2;
 			}
 		}
 		else
